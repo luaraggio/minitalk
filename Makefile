@@ -1,40 +1,32 @@
-# Compilation:
-COMPILER = gcc
-CFLAGS = -Wall -Wextra -Werror -I.
+NAME = libft.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+LIBFT =	libft/libft.a
+CLIENT = client
+SERVER = server
+CLIENT_SRC = client.c
+SERVER_SRC = server.c
 
-SERVER_NAME	=	server
+all: $(LIBFT)
+	cp libft/libft.a $(NAME)
+	$(CC) $(CFLAGS) $(SERVER_SRC) $(NAME) -o $(SERVER)
+	$(CC) $(CFLAGS) $(CLIENT_SRC) $(NAME) -o $(CLIENT)
 
-CLIENT_NAME	=	client
-
-NAME		=	server
-
-# Libraries:
-LIBFT		=	cd libft && make
-PRINTF		= 	cd printf && make
-
-# Sources and Objects:
-SERVER_SRC	=	$(SERVER)
-
-CLIENT_SRC	=	$(CLIENT)
-
-SERVER_OBJS	=	$(SERVER_SRC:.c=.o)
-
-CLIENT_OBJS	=	$(CLIENT_SRC:.c=.o)
-
-OBJS		=	$(CLIENT_OBJS) \
-					$(SERVER_OBJS)
-
-# Rules:
-all: $(NAME)
+$(LIBFT): 
+	make -C libft
 
 RM = rm -rf
 
 clean:
-	$(RM) $(OBJS)
+	make clean -C libft
 
 fclean: clean
-	$(RM) $(NAME)
+	make fclean -C libft
+	$(RM) $(SERVER) $(CLIENT)
 
 re:	fclean all
+
+norm:
+	norminette -R CheckForbiddenSourceHeader
 
 .PHONY: all clean fclean re
