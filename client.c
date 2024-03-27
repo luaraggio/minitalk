@@ -6,7 +6,7 @@
 /*   By: lraggio <lraggio@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:25:37 by lraggio           #+#    #+#             */
-/*   Updated: 2024/03/25 20:32:05 by lraggio          ###   ########.fr       */
+/*   Updated: 2024/03/27 17:30:29 by lraggio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	send_signal(int pid, unsigned char c)
 {
 	int		i;
-	char	tmp;
 
 	i = 8;
 	while (i--)
